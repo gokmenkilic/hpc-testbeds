@@ -15,6 +15,14 @@ partitions:
   accelerator-count: 1
   manufacturer: "NVIDIA"
   scheduler: "Slurm"
+  benchmarks:
+  - type: memory-bandwidth-gb-s
+    name: BabelStream
+    value: 822
+    parameters:
+      array_size: 134217728
+      iterations: 100
+      precision: FP64
 interconnects:
 - CerIO composable fabric
 reference: https://cosma.readthedocs.io/en/latest/gpu.html#dine2
@@ -67,5 +75,6 @@ nvidia-smi
 
 ### Restrictions
 
+- dine2 nodes mount `/dine` not `/cosma5`. Copy binaries to `/dine/data/<project>/<username>/`.
 - Maximum wall time: 3 days
 - CUDA is available via `module load nvhpc/25.11`

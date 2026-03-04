@@ -15,6 +15,14 @@ partitions:
   accelerator-count: 8
   manufacturer: "AMD"
   scheduler: "Slurm"
+  benchmarks:
+  - type: memory-bandwidth-gb-s
+    name: BabelStream
+    value: 4036
+    parameters:
+      array_size: 134217728
+      iterations: 100
+      precision: FP64
 interconnects:
 reference: https://cosma.readthedocs.io/en/latest/gpu.html#mi300x 
 ---
@@ -55,15 +63,26 @@ Contact cosma-support@durham.ac.uk for any questions.
 
 ### Usage
 
-Connect directly via SSH from a login node:
+### Usage
+
+Jobs are submitted via Slurm to the `mi300x` partition:
 ```bash
-ssh ga008
+#!/bin/bash
+#SBATCH --partition=mi300x
+#SBATCH --account=do018
+#SBATCH --time=01:00:00
+
 rocm-smi
 ./gpu_program_to_run
+```
+
+For interactive access:
+```bash
+srun -p mi300x -A do018 -t 10 --pty /bin/bash
 ```
 
 ### Restrictions
 
 - Nodes are non-exclusive by default (shared with other users). Use `--exclusive` if you require the entire node
-- The AMD ROCm software stack is installed. ROCm 6.3.0 is available at `/opt/rocm-6.3.0/bin/hipcc`
+- The AMD ROCm software stack is installed. ROCm 7.2.0 is available at `/opt/rocm-7.2.0/bin/hipcc`
 - CUDA code must be converted to HIP using the `hipify` script provided with ROCm
