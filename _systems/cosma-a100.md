@@ -10,9 +10,11 @@ funders:
 - DiRAC
 - ExCALIBUR
 partitions:
-- nodes: 3
+partitions:
+- name: "cosma8-shm"
+  nodes: 2
   accelerator: "NVIDIA A100 40GB"
-  accelerator-count: 1-3
+  accelerator-count: 1
   manufacturer: "Dell"
   scheduler: "Slurm"
   benchmarks:
@@ -23,6 +25,12 @@ partitions:
       array_size: 134217728
       iterations: 100
       precision: FP64
+- name: "mad06"
+  nodes: 1
+  accelerator: "NVIDIA A100 40GB"
+  accelerator-count: 1
+  manufacturer: "Dell"
+  scheduler: "Direct SSH"
 interconnects:
 - Infiniband HDR200
 - Liqid composable fabric
