@@ -3,7 +3,7 @@ name: "COSMA MI300X"
 status: in-service
 category: testbed
 focus: discipline
-focus-detail: "Astronomy and Cosmology"
+focus-detail: "Prototyping and testing"
 grouping: "COSMA"
 funders:
 - STFC
